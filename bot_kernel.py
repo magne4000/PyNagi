@@ -146,6 +146,6 @@ class Pynagi(ircbot.SingleServerIRCBot):
 
 
 if __name__ == "__main__":
-    conf = parse_conf_file("pynagi.conf")
+    conf = parse_conf_file(os.path.join(os.path.dirname(__file__), "pynagi.conf"))
     Pynagi(conf.get("pynagi", "server"), conf.getint("pynagi", "port"), conf.get("pynagi", "channel"), conf.get("pynagi", "nickname"), conf.get("pynagi", "dat_file"), conf.getint("pynagi", "icinga_check_interval"), conf.getint("pynagi", "to_show")).start()
 

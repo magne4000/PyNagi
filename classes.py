@@ -104,14 +104,14 @@ class Service(DatObject):
 
     def strStateColored(self):
         if self.state==0:
-            return color("OK", BLACK, LIME_GREEN)
+            return color("[OK]", LIME_GREEN)
         elif self.state==1:
-            return color("WARNING", BLACK, YELLOW)
+            return color("[WARNING]", YELLOW)
         elif self.state==2:
-            return color("CRITICAL", BLACK, RED)
+            return color("[CRITICAL]", RED)
 
     def status(self):
-        return "[%s][%s %s][%s] %s" % (datetime.now().strftime("%d/%m/%Y %H:%M"), self.hostname, self.description, self.strStateColored(), self.plugin)
+        return "%s[%s %s] %s" % (self.strStateColored(), bold(self.hostname), self.description, self.plugin)
 
 
 class Host(DatObject):
@@ -136,15 +136,15 @@ class Host(DatObject):
     
     def strStateColored(self):
         if self.state==0:
-            return color("UP", BLACK, LIME_GREEN)
+            return color("[UP]", LIME_GREEN)
         elif self.state==1:
-            return color("DOWN", BLACK, RED)
+            return color("[DOWN]", RED)
         elif self.state==2:
-            return color("UNREACHABLE", BLACK, RED)
+            return color("[UNREACHABLE]", RED)
         elif self.state==3:
-            return color("PENDING", BLACK, LIGHT_GRAY)
+            return color("[PENDING]", LIGHT_GRAY)
 
     def status(self):
-        return "[%s][%s][%s] %s" % (datetime.now().strftime("%d/%m/%Y %H:%M"), self.hostname, self.strStateColored(), self.plugin)
+        return "%s[%s] %s" % (self.strStateColored(), bold(self.hostname), self.plugin)
 
 

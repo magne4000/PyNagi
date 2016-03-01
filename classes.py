@@ -54,7 +54,7 @@ class DatObjectManager:
             host = self.dolist["host"][obj]
             if host.state > 0:
                 yield host
-            else:
+            elif host.hostname in self.dolist["service"]:
                 for service in self.dolist["service"][host.hostname]:
                     if self.dolist["service"][host.hostname][service].state > 0:
                         yield self.dolist["service"][host.hostname][service]
